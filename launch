@@ -3,9 +3,9 @@
 # Copyright 2019 (c) Ayane Satomi <sr229@coder.com>
 
 DIR="$(cd "$(dirname "$0")" ; pwd -P)"
-APP_JS_PATH=""
+APP_JS_PATH="$DIR/app/out/vs/server/main.js"
 NODE_DIST=
-NODE_VERSION="10.17.0"
+NODE_VERSION="12.13.1"
 LINUX_ARCH=
 
 case "$(uname -m)" in
@@ -27,4 +27,6 @@ case "$(uname)" in
 esac
 
 NODE_BIN="$DIR/$NODE_DIST/bin/node"
-NODE_PATH="$DIR/node_modules"
+NODE_PATH="$DIR/app/node_modules"
+
+exec "$NODE_BIN" "$APP_JS_PATH" $@
