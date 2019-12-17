@@ -2,7 +2,7 @@
 
 SETLOCAL
 
-SET "NODE_DIST=node-v8.12.0"
+SET "NODE_DIST=node-v10.17.0"
 SET "APP_MAIN_JS=app.js"
 
 SET "NODE_EXE=%~dp0\%NODE_DIST%-win*\node.exe"

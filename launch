@@ -1,18 +1,30 @@
 #!/bin/sh
 # Cross-Unix Launch Script for Warp
-# Copyright 2019 Ayane Satomi <sr229@coder.com>
+# Copyright 2019 (c) Ayane Satomi <sr229@coder.com>
 
 DIR="$(cd "$(dirname "$0")" ; pwd -P)"
 APP_JS_PATH=""
 NODE_DIST=
+NODE_VERSION="10.17.0"
+LINUX_ARCH=
 
 case "$(uname -m)" in
+   x86_64)
+      LINUX_ARCH="x64" ;;
+   aarch64)
+      LINUX_ARCH="arm64" ;;
+    *)
+      echo "Unsupported arch" && exit 127 ;;
+esac
+
+case "$(uname)" in
    Linux*)
-     NODE_DIST="node-v8.12.0-linux-*" ;;
+     NODE_DIST="node-v$NODE_VERSION-linux-${LINUX_ARCH}" ;;
    Darwin*)
-     NODE_DIST="node-v8.12.0-darwin-x64" ;;
+     NODE_DIST="node-v$NODE_VERSION-darwin-x64" ;;
     *)
      echo "Unsupported Unix!" && exit 127 ;;
 esac
 
+NODE_BIN="$DIR/$NODE_DIST/bin/node"
 NODE_PATH="$DIR/node_modules"
